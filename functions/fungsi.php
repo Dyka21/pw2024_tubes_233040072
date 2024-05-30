@@ -43,8 +43,8 @@ function tambah ($data)
 function hapus ($id) 
 {
     $conn = koneksi();
-    mysqli_query($conn, "DELETE FROM clinic where id = $id") or die(mysqli_error($conn));
-    mysqli_affected_rows($conn);
+    mysqli_query($conn, "DELETE FROM clinic WHERE id = $id") or die(mysqli_error($conn));
+    return mysqli_affected_rows($conn);
 }
 
 function ubah ($data)
@@ -58,7 +58,7 @@ function ubah ($data)
     $photos =  htmlspecialchars ($data['photos']);
     $room =  htmlspecialchars ($data['room']);
 
-    $query = "UPDATE mahasiswa SET
+    $query = "UPDATE clinic SET
                 
                 name = '$name',
                 places = '$places',

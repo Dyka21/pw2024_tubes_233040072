@@ -1,4 +1,10 @@
+<?php 
 
+require '../functions/fungsi.php';
+$clinic = query("SELECT * FROM clinic");
+
+
+?>
 
 
 
@@ -29,7 +35,7 @@
   <!----------------- start navbar -------------------->
     <nav class="navbar navbar-expand-lg navbar-dark nav-color position-fixed w-100">
       <div class="container">
-        <a class="navbar-brand" href="#">JasPerNes</a>
+        <a class="navbar-brand" href="#">PUSKESBIT</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,7 +45,7 @@
               <a class="nav-link active" aria-current="page" href="#">BERANDA</a>
             </li>
             <li class="nav-item mx-2">
-              <a class="nav-link" href="#">LAYANAN</a>
+              <a class="nav-link" href="#">PUSKESMAS</a>
             </li> 
             <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -78,7 +84,33 @@
   
   <!-------------------- bagian layanan ----------------->
   <section id="layanan">
-    
+  
+    <div class="col-12 text-center">
+          <h2>Daftar Puskesmas</h2>
+        </div>
+        <a href="tambah.php" class="btn btn-primary">Tambah Data Puskesmas</a>
+    <div class="container mt-5 row text-center" style:=" ">
+        <?php
+    foreach ($clinic as $cli) : ?>
+                <div class="col-lg-2 col-md-2 col-sm-4 col-6 mt-2">
+                    <div class="Card text-center">
+                        <img src="" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h6 class="card-title"><?= $cli['name'];?></h6>
+                            <p class="card-text"><?= $cli['places'];?></p>
+                            <p class="card-text"><?= $cli['contact'];?></p>
+                            <p class="card-text"><?= $cli['photos'];?></p>
+                            <p class="card-text"><?= $cli['room'];?></p>
+                            <a href="hapus.php?id=<?= $cli['id']; ?>" onclick=" return confirm('yakin?');"  class="btn btn-danger d-grid">Hapus</a>
+                            <a href="ubah.php?id= <?= $cli['id']; ?> " class="btn btn-dark d-grid">Ubah</a>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach;?>
+                
+            </div>
+
+        </div>
   </section>
   <!--------------------- footer ----------------------------->
   <footer class="d-flex align-items-center position-relative justify-content-center">
@@ -86,13 +118,11 @@
       <div class="container">
         <div class="row">
           <div class="col-md-7 d-flex align-items-center">
-            <a href="#" class="ms-3">JasPerNes</a>
+            <a href="#" class="ms-3">PUSKESBIT</a>
           </div>
           <div class="col-md-5 d-flex justify-content-evenly justify-content-center">
             <a href="#hero">Beranda</a>
-            <a href="#layanan">Layanan</a>
-            <a href="#mesin"></a>
-            <a href="#contact"></a>
+            <a href="#layanan">Puskesmas</a>
           </div>
         </div>
         <div class="row position-absolute copyright start-50 translate-middle">
