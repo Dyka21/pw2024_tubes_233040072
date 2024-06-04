@@ -62,8 +62,9 @@ if (isset($_POST['ubah'])) {
 </div>
 
 <div class="mb-3">
-            <label for="foto" class="form-label">foto : </label>
-            <input type="file" name="foto" class="form-control" id="foto" required>
+            <label for="photos" class="form-label">photos </label>
+            <img src="../img/?= $cli['photos']; ?>"> 
+            <input type="file" name="photos" class="form-control" id="photos">
         </div>
     <button type="submit" name="ubah" class="btn btn-primary">Ubah</button>
     </div>

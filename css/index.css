@@ -37,6 +37,10 @@ body{
     font-weight: 700;
 }
 
+.card {
+    color: green;
+}
+
 .button-secondary{
     width: 133px;
     height: 40px;
@@ -139,6 +143,8 @@ h2{
 
     transition: all .3s ease-in;
 }
+
+.card
 
 /* hover layanan */
 

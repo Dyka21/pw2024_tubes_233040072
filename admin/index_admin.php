@@ -3,6 +3,13 @@
 require '../functions/fungsi.php';
 $clinic = query("SELECT * FROM clinic");
 
+// ketika tombol cari di klik
+if(isset($_POST['cari'])) {
+  $clinic =  cari($_POST['keyword']);
+} else {
+  $clinic = query("SELECT * FROM clinic");
+}
+
 
 ?>
 
@@ -29,7 +36,7 @@ $clinic = query("SELECT * FROM clinic");
     <!-- my css -->
     <link rel="stylesheet" href="../css/index.css">
 
-    <title>JasPerNes</title>
+    <title>PUSKESBIT</title>
   </head>
   <body>
   <!----------------- start navbar -------------------->
@@ -46,10 +53,13 @@ $clinic = query("SELECT * FROM clinic");
             </li>
             <li class="nav-item mx-2">
               <a class="nav-link" href="#">PUSKESMAS</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="#">PROFILE</a>
             </li> 
-            <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+            <form class="d-flex" role="search" action="" method="post">
+        <input class="form-control me-2 keyword"  type="search" name="keyword" placeholder="search" aria-label="search" autocomplete="off" autofocus>
+        <button class="btn btn-outline-success" type="submit" name="cari">Cari</button>
       </form>
           </ul>
 
@@ -85,30 +95,32 @@ $clinic = query("SELECT * FROM clinic");
   <!-------------------- bagian layanan ----------------->
   <section id="layanan">
   
-    <div class="col-12 text-center">
+        <div class="col-12 text-center">
           <h2>Daftar Puskesmas</h2>
         </div>
+
         <a href="tambah.php" class="btn btn-primary">Tambah Data Puskesmas</a>
-    <div class="container mt-5 row text-center" style:=" ">
+    
+   
+        <div class="row">
         <?php
     foreach ($clinic as $cli) : ?>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-6 mt-2">
-                    <div class="Card text-center">
-                        <img src="" class="card-img-top" alt="...">
+                  <div class="card" style="width: 18rem;">
+                        <img src="../img/<?= $cli['photos'] ?>" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h6 class="card-title"><?= $cli['name'];?></h6>
+                            <h5 class="card-title"><?= $cli['name'];?></h5>
                             <p class="card-text"><?= $cli['places'];?></p>
                             <p class="card-text"><?= $cli['contact'];?></p>
                             <p class="card-text"><?= $cli['photos'];?></p>
                             <p class="card-text"><?= $cli['room'];?></p>
-                            <a href="hapus.php?id=<?= $cli['id']; ?>" onclick=" return confirm('yakin?');"  class="btn btn-danger d-grid">Hapus</a>
-                            <a href="ubah.php?id= <?= $cli['id']; ?> " class="btn btn-dark d-grid">Ubah</a>
+                            <a href="hapus.php?id=<?= $cli['id']; ?>" onclick=" return confirm('yakin?');"  class="btn btn-danger">Hapus</a>
+                            <a href="ubah.php?id= <?= $cli['id']; ?> " class="btn btn-dark ">Ubah</a>
                         </div>
                     </div>
-                </div>
-                <?php endforeach;?>
-                
-            </div>
+                    <?php endforeach;?>
+                    
+                  </div>
+        
 
         </div>
   </section>
