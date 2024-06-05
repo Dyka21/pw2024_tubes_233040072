@@ -93,4 +93,24 @@ function cari($keyword)
 
     return $rows;
 }
+
+function login($data){
+    $conn = koneksi();
+
+    $username = htmlspecialchars($data['username']);
+    $password = htmlspecialchars($data['password']);
+
+
+    if($username == 'rusdi' && $password  == '123') {
+        header("location: ../admin/index_admin.php");
+        exit;
+    }
+    else{
+        return[
+            'error' => true,
+            'pesan' => 'username / password salah'
+        ];
+    }
+
+}
 ?>

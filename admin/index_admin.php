@@ -1,4 +1,10 @@
 <?php 
+session_start();
+
+// if( ! isset($_SESSION['login'])){
+//   header("Location: login.php");
+//   exit;
+// }
 
 require '../functions/fungsi.php';
 $clinic = query("SELECT * FROM clinic");
@@ -57,9 +63,9 @@ if(isset($_POST['cari'])) {
             <li class="nav-item mx-2">
               <a class="nav-link" href="#">PROFILE</a>
             </li> 
-            <form class="d-flex" role="search" action="" method="post">
+            <form class=""  role="search" action="" method="post">
         <input class="form-control me-2 keyword"  type="search" name="keyword" placeholder="search" aria-label="search" autocomplete="off" autofocus>
-        <button class="btn btn-outline-success" type="submit" name="cari">Cari</button>
+        <button class="btn btn-outline-success " type="submit" name="cari">Cari</button>
       </form>
           </ul>
 
@@ -75,6 +81,7 @@ if(isset($_POST['cari'])) {
   <!------------------ bagian hero ----------------->
   <section id="hero">
     <div class="container h-100">
+      <img src=".//Blue Green Illustrative World Health Day Banner.png"  class="d-block w-100" alt="">
       <div class="row h-100">
         <div class="col-md-6 hero-tagline my-auto">
           <h1></h1>

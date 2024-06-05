@@ -50,8 +50,9 @@ if (isset($_POST['tambah'])) {
 </div>
 
 <div class="mb-3">
-            <label for="foto" class="form-label">foto  </label>
-            <input type="file" name="foto" class="form-control" id="foto" required>
+            <label for="photos" class="form-label">foto  </label>
+            <img src="../img/?= $cli['photos']; ?>"> 
+            <input type="file" name="photos" class="form-control" id="photos" required>
         </div>
     <button type="submit" name="tambah" class="btn btn-primary">Tambah</button>
     </div>

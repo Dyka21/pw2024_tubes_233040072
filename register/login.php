@@ -1,4 +1,13 @@
+<?php
+session_start();
+require '../functions/fungsi.php';
 
+
+if(isset($_POST['login'])){
+    $login =    login($_POST);
+}
+
+?>
 
 
 <!DOCTYPE html>
@@ -17,23 +26,24 @@
 
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form>
+            <form action="" method="post">
                 <h1>Buat Akun</h1>
-            
                 <span>atau gunakan email</span>
                 <input type="text" id="username" placeholder="Name" required>
-                <input type="email" id="email" placeholder="Email" required>
+                <input type="username" id="username" placeholder="username" required>
                 <input type="password" id="password" placeholder="Password" required>
                 <button>Daftar</button>
             </form>
         </div>
         <div class="form-container sign-in">
-            <form>
+            <form  action="" method="post">
+            <?php if(isset($login['error'])) : ?>
+                    <p><?= $login['pesan']; ?></p>
+                <?php endif; ?>
                 <h1>Masuk</h1>
-                <span>or use your email password</span>
-                <input type="email" id="email" placeholder="Email" required>
-                <input type="password" id="password" placeholder="Password">
-                <button>Masuk</button>
+                <input type="text" id="text" placeholder="username" required name="username">
+                <input type="password" id="password" placeholder="Password" name="password">
+                <button name="login">Masuk</button>
             </form>
         </div>
         <div class="toggle-container">
