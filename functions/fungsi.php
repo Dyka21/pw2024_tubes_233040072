@@ -94,23 +94,72 @@ function cari($keyword)
     return $rows;
 }
 
-function login($data){
+function login($data)
+{
+  $conn = koneksi();
+
+  $username = htmlspecialchars($data["username"]);
+  $password = htmlspecialchars($data["password"]);
+
+  // cek dulu username nya
+  if ($user = query("SELECT * FROM users WHERE username = '$username'")[0]) {
+    if (password_verify($password, $user['password'])) {
+
+      $_SESSION['login'] = true;
+      header("Location: ../admin/index_admin.php");
+      exit;
+    }
+  }
+  return [
+    'error' => true,
+    'pesan' => 'Username / Password Salah!'
+  ];
+}
+
+function registrasi($data)
+{
     $conn = koneksi();
 
-    $username = htmlspecialchars($data['username']);
-    $password = htmlspecialchars($data['password']);
+$username = htmlspecialchars(strtolower( $data ['username']));
+$password1 = mysqli_real_escape_string($conn, $data ['password1']);
+$password2 = mysqli_real_escape_string($conn, $data ['password2']);
 
 
-    if($username == 'rusdi' && $password  == '123') {
-        header("location: ../admin/index_admin.php");
-        exit;
-    }
-    else{
-        return[
-            'error' => true,
-            'pesan' => 'username / password salah'
-        ];
-    }
+// jika username / password kosong
+if(empty($username) || empty($password1) || empty($password2)) {
+    echo "<script>
+    alert('username / password tidak boleh kosong');
+    document.location.href = 'registrasi.php';
+        </script>";
+        return false;
+}
 
+// jika username sudah ada
+
+if (query("SELECT * FROM users WHERE username = '$username'")){
+    echo "<script>
+    alert('username sudah terdaftar');
+    document.location.href = 'registrasi.php';
+        </script>";
+        return false;
+}
+
+// jika konfirmasi password tidak sesuai
+if($password1 !== $password2) {
+    echo "<script>
+    alert('password tidak sesuai');
+    document.location.href = 'registrasi.php';
+        </script>";
+        return false;
+}
+
+// jika username dan password sesuai
+// enskripsi pass
+$password_baru = password_hash($password1, PASSWORD_DEFAULT);
+// INSERT KE TABel USERs
+$query = "INSERT INTO users VALUES(null, '$username', '$password_baru')";
+
+mysqli_query($conn, $query) or die (mysqli_error($conn));
+return mysqli_affected_rows($conn); 
 }
 ?>

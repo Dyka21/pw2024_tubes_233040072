@@ -2,10 +2,12 @@
 session_start();
 require '../functions/fungsi.php';
 
-
+// login
 if(isset($_POST['login'])){
     $login =    login($_POST);
 }
+
+
 
 ?>
 
@@ -28,11 +30,8 @@ if(isset($_POST['login'])){
         <div class="form-container sign-up">
             <form action="" method="post">
                 <h1>Buat Akun</h1>
-                <span>atau gunakan email</span>
-                <input type="text" id="username" placeholder="Name" required>
-                <input type="username" id="username" placeholder="username" required>
-                <input type="password" id="password" placeholder="Password" required>
-                <button>Daftar</button>
+                <span></span>
+            
             </form>
         </div>
         <div class="form-container sign-in">
@@ -41,7 +40,7 @@ if(isset($_POST['login'])){
                     <p><?= $login['pesan']; ?></p>
                 <?php endif; ?>
                 <h1>Masuk</h1>
-                <input type="text" id="text" placeholder="username" required name="username">
+                <input type="text" id="text" placeholder="username" required name="username" autocomplete="off" autofocus>
                 <input type="password" id="password" placeholder="Password" name="password">
                 <button name="login">Masuk</button>
             </form>
@@ -49,14 +48,14 @@ if(isset($_POST['login'])){
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
-                    <h1>Welcome Back!</h1>
-                    <p>Masukan detail pribadi anda untuk menggunakan semua fitur situs</p>
+                    <h1></h1>
+                    <p></p>
                     <button class="hidden" id="login">Masuk</button>
                 </div>
                 <div class="toggle-panel toggle-right">
-                    <h1>Halo</h1>
-                    <p>Daftar detail pribadi anda untuk menggunakan semua fitur situs</p>
-                    <button class="hidden" id="register">Daftar</button>
+                    <h1></h1>
+                    <p>Belum Resgist?</p>
+                    <a href="registrasi.php"><button name="register">Register</button></a>
                 </div>
             </div>
         </div>
