@@ -104,9 +104,16 @@ function login($data)
   // cek dulu username nya
   if ($user = query("SELECT * FROM users WHERE username = '$username'")[0]) {
     if (password_verify($password, $user['password'])) {
-
+    // setvariables
       $_SESSION['login'] = true;
-      header("Location: ../admin/index_admin.php");
+      $_SESSION['role'] = $user ['role'];
+      $_SESSION['id_users'] = $user ['id_user'];
+
+      if ($user['role'] == 'admin'){
+        header('Location: ../admin/index_admin.php?id_user=' . $_SESSION['id_user']);
+      } else{
+        header('Location: ../admin/index_user.php?id_user=' . $_SESSION['id_user']);
+      }
       exit;
     }
   }
@@ -152,12 +159,15 @@ if($password1 !== $password2) {
         </script>";
         return false;
 }
-
+// get role from user input
+$role = 'users';
 // jika username dan password sesuai
 // enskripsi pass
 $password_baru = password_hash($password1, PASSWORD_DEFAULT);
 // INSERT KE TABel USERs
-$query = "INSERT INTO users VALUES(null, '$username', '$password_baru')";
+$query = "INSERT INTO users (username,password, role)
+         VALUES
+         ('$username', '$password_baru','$role')";
 
 mysqli_query($conn, $query) or die (mysqli_error($conn));
 return mysqli_affected_rows($conn); 

@@ -16,9 +16,7 @@ $clinic =  cari($_GET['keyword']);
                             <p class="card-text"><?= $cli['places'];?></p>
                             <p class="card-text"><?= $cli['contact'];?></p>
                             
-                            <p class="card-text"><?= $cli['room'];?></p>
-                            <a href="hapus.php?id=<?= $cli['id']; ?>" onclick=" return confirm('yakin?');"  class="btn btn-danger">Hapus</a>
-                            <a href="ubah.php?id= <?= $cli['id']; ?> " class="btn btn-dark ">Ubah</a>
+                            <p class="card-text"><?= $cli['room'];?></p> 
                         </div>
                     </div>
                     <?php endforeach;?>

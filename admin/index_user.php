@@ -60,7 +60,7 @@ if(isset($_POST['cari'])) {
               <a class="nav-link" href="#">PUSKESMAS</a>
               </li>
               <li class="nav-item mx-2">
-             
+            
                 </li> 
                 <form class=""  role="search" action="" method="post">
                   <input class="form-control me-2 keyword"  type="search" name="keyword" placeholder="search" aria-label="search" autocomplete="off" autofocus>
@@ -69,10 +69,8 @@ if(isset($_POST['cari'])) {
                 </ul>
                 
                 <div>
-                  
-                 
-                  <a href="logout.php"> <button class="button-primary">Logout</button></a>
-                  
+                
+                <a href="logout.php"> <button class="button-primary">Logout</button></a>
                   </div>
                   </div>
                   </div>
@@ -107,7 +105,7 @@ if(isset($_POST['cari'])) {
               <div class="col-12 text-center">
                 <h2>Daftar Puskesmas</h2>
               </div>
-                <a href="tambah.php" class="btn btn-primary">Tambah Data Puskesmas</a>
+                
               <div class="containers">
                 <div class="row">
                 <?php if (empty($clinic)) : ?>
@@ -123,8 +121,7 @@ if(isset($_POST['cari'])) {
                             <p class="card-text"><?= $cli['contact'];?></p>
                             
                             <p class="card-text"><?= $cli['room'];?></p>
-                            <a href="hapus.php?id=<?= $cli['id']; ?>" onclick=" return confirm('yakin?');"  class="btn btn-danger">Hapus</a>
-                            <a href="ubah.php?id= <?= $cli['id']; ?> " class="btn btn-dark ">Ubah</a>
+                            
                         </div>
                     </div>
                     <?php endforeach;?>

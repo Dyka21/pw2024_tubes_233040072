@@ -1,5 +1,15 @@
 <?php
 session_start();
+
+
+if (isset($_SESSION['login'])) {
+    if ($_SESSION['role'] == 'admin') {
+        header('Location: index_admin.php');
+    } else {
+        header('Location: index_user.php');
+    }
+    exit;
+}
 require '../functions/fungsi.php';
 
 // login

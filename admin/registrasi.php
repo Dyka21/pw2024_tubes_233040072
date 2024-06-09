@@ -4,7 +4,7 @@ require '../functions/fungsi.php';
 
 if(isset($_POST['registrasi'])) {
     if (registrasi($_POST) > 0) {
-        "<script>
+       echo "<script>
     alert('user baru berhasil ditambahkan, silahkan login');
     document.location.href = 'login.php';
         </script>";
